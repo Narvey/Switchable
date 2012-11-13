@@ -1,9 +1,8 @@
 /**
  * Author: Cyndi Rader
  * Date:
- * Purpose:
+ * Purpose: Abstract Server Exercise
  */
-import java.util.*;
 import java.text.*;
 import javax.swing.*;
 
@@ -65,25 +64,5 @@ public class Clock extends JPanel implements Runnable {
 		String time = justTime.format(System.currentTimeMillis());
 		timeField.setText(time);
 		repaint();
-	}
-	
-	public static void main(String[] args)
-	{
-	    JFrame frame = new JFrame("Test Clock");
-	    Clock clock = new Clock();
-	    frame.setContentPane(clock);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.pack();
-	    frame.setVisible(true);    
-	    // Just to test functionality
-	    clock.turnOn();
-	    System.out.println("Continue?");
-	    Scanner s = new Scanner(System.in);
-	    s.next();
-	    clock.turnOff();
-	    System.out.println("Continue?");
-	    s.next();
-	    clock.turnOn();
-
 	}
 }

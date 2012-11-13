@@ -1,11 +1,9 @@
-import java.util.Scanner;
-
 import javax.swing.*;
 
 /**
  * Author: Cyndi Rader
  * Date:
- * Purpose:
+ * Purpose: Adapter Exercise
  */
 
 public class Pictures extends JPanel {
@@ -33,12 +31,10 @@ public class Pictures extends JPanel {
 	            pictureLabel.getBorder()));
 
 	        //Display the first image using setIcon option of JLabel
-	        pictureLabel.setIcon(onIcon);
-	        pictureLabel.setText("On");
+	        pictureLabel.setIcon(offIcon);
+	        pictureLabel.setText("Off");
 	        
-	        add(pictureLabel);
-
-	     
+	        add(pictureLabel);	     
 	}
 	
 	   /** Returns an ImageIcon, or null if the path was invalid. */
@@ -65,25 +61,5 @@ public class Pictures extends JPanel {
         pictureLabel.setIcon(offIcon);
         pictureLabel.setText("Off");    
     }
-	
-	
-	public static void main(String[] args)
-	{
-	    JFrame frame = new JFrame("Test Pictures");
-	    Pictures pictures = new Pictures();
-	    frame.setContentPane(pictures);
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.pack();
-	    frame.setVisible(true); 
-	    // Just to test functionality
-	    System.out.println("Continue?");
-	    Scanner s = new Scanner(System.in);
-	    s.next();
-	    pictures.turnOff();
-	    System.out.println("Continue?");
-	    s.next();
-	    pictures.turnOn();
-	}
-	
 
 }
