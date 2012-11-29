@@ -25,11 +25,12 @@ public class SwitchDemo extends JPanel {
 		myPictures = new PictureAdapter(new Pictures());
 		switch1 = new MySwitch(myClock);
 		switch2 = new MySwitch(myPictures);
+		switch2.switchOn();//TODO remove
 		setLayout(new BorderLayout());
 		switchPanel=new JPanel(new FlowLayout());
 		switchPanel.add(createRadioPanel(switch1));
 		switchPanel.add(createRadioPanel(switch2));
-		switchPanel.setSize(500,10);
+		switchPanel.setSize(500,3);
 		add(switchPanel,BorderLayout.NORTH);
 		add(myPictures.getPic(),BorderLayout.CENTER);
 		createClockPanel();
@@ -62,9 +63,10 @@ public class SwitchDemo extends JPanel {
 		radioPanel.add(offButton);
 		
 		TitledBorder title;
-		title = BorderFactory.createTitledBorder(whichswitch.getSwitchable().getClass().getCanonicalName()+ " Switch");
+		title = BorderFactory.createTitledBorder(whichswitch.getSwitchable().getClass().getName()+ " Switch");
+		title.setTitleJustification(TitledBorder.CENTER);
 		radioPanel.setBorder(title);
-		radioPanel.setSize(900, 50);
+		radioPanel.setSize(250, 50);
 		return radioPanel;
 	}
 	
