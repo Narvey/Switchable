@@ -14,7 +14,6 @@ import java.awt.*;
 public class SwitchDemo extends JPanel {
 	private Clock myClock;
 	private MySwitch switch1;
-	private JRadioButton onButton, offButton;
 	private ButtonGroup buttonGroup;
 	private PictureAdapter myPictures;
 	private MySwitch switch2;
@@ -46,9 +45,9 @@ public class SwitchDemo extends JPanel {
 	public JPanel createRadioPanel(MySwitch whichswitch)
 	{
 		JPanel radioPanel = new JPanel();
-		onButton = new JRadioButton("On");
+		JRadioButton onButton = new JRadioButton("On");
 		onButton.setMnemonic(KeyEvent.VK_N);
-		offButton = new JRadioButton("Off");
+		JRadioButton offButton = new JRadioButton("Off");
 		offButton.setMnemonic(KeyEvent.VK_F);
 		offButton.setSelected(true);
 		ActionListener listener = new ButtonListener(whichswitch);
@@ -77,7 +76,7 @@ public class SwitchDemo extends JPanel {
 		}
 		public void actionPerformed(ActionEvent e)
 		{
-			if (e.getSource() == onButton)
+			if (((JRadioButton)e.getSource()).getText()=="On")
 				sw.switchOn();
 			else
 				sw.switchOff();
