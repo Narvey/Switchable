@@ -7,7 +7,7 @@ import java.text.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class Clock extends JPanel implements Runnable {
+public class Clock extends JPanel implements Runnable, Switchable {
 	private volatile Thread clockThread = null;
 	// Time between clock updates, in ms
 	public static int SLEEP_TIME = 1000;

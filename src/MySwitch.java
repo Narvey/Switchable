@@ -1,24 +1,30 @@
+
+
 /**
  * Author: Cyndi Rader
  * Date:
  * Purpose:
  */
 
-public class MySwitch {
-	private Clock clock;
+public class MySwitch{
+	private Switchable toSwitch;
 	
-	public MySwitch(Clock clock)
+	public MySwitch(Switchable switchy)
 	{
-		this.clock = clock;
+		this.toSwitch = switchy;
 	}
 	
 	public void switchOn()
 	{
-		clock.turnOn();
+		toSwitch.turnOn();
 	}
 
 	public void switchOff()
 	{
-		clock.turnOff();
+		toSwitch.turnOff();
+	}
+	
+	public Object getSwitchable(){
+		return toSwitch;
 	}
 }

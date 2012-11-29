@@ -1,6 +1,8 @@
 /**
  * Author: Cyndi Rader
  * Purpose: Abstract Server and Adapter exercise
+ * 
+ * Modified by Nathan Harvey
  */
 
 import javax.swing.*;
@@ -11,16 +13,26 @@ import java.awt.*;
 @SuppressWarnings("serial")
 public class SwitchDemo extends JPanel {
 	private Clock myClock;
-	private MySwitch mySwitch;
+	private MySwitch switch1;
 	private JRadioButton onButton, offButton;
 	private ButtonGroup buttonGroup;
+	private PictureAdapter myPictures;
+	private MySwitch switch2;
+	private JPanel switchPanel;
 	
 	public SwitchDemo()
 	{
 		myClock = new Clock();
-		mySwitch = new MySwitch(myClock);
+		myPictures = new PictureAdapter(new Pictures());
+		switch1 = new MySwitch(myClock);
+		switch2 = new MySwitch(myPictures);
 		setLayout(new BorderLayout());
-		createRadioPanel();
+		switchPanel=new JPanel(new FlowLayout());
+		switchPanel.add(createRadioPanel(switch1));
+		switchPanel.add(createRadioPanel(switch2));
+		switchPanel.setSize(500,10);
+		add(switchPanel,BorderLayout.NORTH);
+		add(myPictures.getPic(),BorderLayout.CENTER);
 		createClockPanel();
 	}
 	
@@ -31,7 +43,7 @@ public class SwitchDemo extends JPanel {
 		add(clockPanel, BorderLayout.SOUTH);
 	}
 	
-	public void createRadioPanel()
+	public JPanel createRadioPanel(MySwitch whichswitch)
 	{
 		JPanel radioPanel = new JPanel();
 		onButton = new JRadioButton("On");
@@ -39,7 +51,7 @@ public class SwitchDemo extends JPanel {
 		offButton = new JRadioButton("Off");
 		offButton.setMnemonic(KeyEvent.VK_F);
 		offButton.setSelected(true);
-		ActionListener listener = new ButtonListener();
+		ActionListener listener = new ButtonListener(whichswitch);
 		onButton.addActionListener(listener);
 		offButton.addActionListener(listener);
 
@@ -51,19 +63,24 @@ public class SwitchDemo extends JPanel {
 		radioPanel.add(offButton);
 		
 		TitledBorder title;
-		title = BorderFactory.createTitledBorder("Switch");
+		title = BorderFactory.createTitledBorder(whichswitch.getSwitchable().getClass().getCanonicalName()+ " Switch");
 		radioPanel.setBorder(title);
-		add(radioPanel, BorderLayout.NORTH);
+		radioPanel.setSize(900, 50);
+		return radioPanel;
 	}
 	
 	class ButtonListener implements ActionListener
 	{
+		private MySwitch sw;
+		public ButtonListener(MySwitch whichswitch) {
+			sw = whichswitch;
+		}
 		public void actionPerformed(ActionEvent e)
 		{
 			if (e.getSource() == onButton)
-				mySwitch.switchOn();
+				sw.switchOn();
 			else
-				mySwitch.switchOff();
+				sw.switchOff();
 		}
 	}
 	
@@ -73,7 +90,7 @@ public class SwitchDemo extends JPanel {
 	    SwitchDemo app = new SwitchDemo();
 	    frame.setContentPane(app);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setSize(200, 150);
+	    frame.setSize(500, 500);
 	    frame.setVisible(true);    
 
 	}
